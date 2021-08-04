@@ -15,20 +15,20 @@ else
 endif
 CCFLAGS=-std=c++17 -Wextra -Wall -pedantic
 
-IFLAGS=-I lib/raylib/
+IFLAGS=-I lib
 
 
 
-all: pre-build $(EXE)
-
-pre-build:
-	mkdir -p $(OBJ)
+all: pre-build $(EXE) $(TST_EXE)
 
 $(EXE): $(OBJ)/main.o
 	$(CC) -o $(EXE) $(OBJ)/main.o $(LFLAGS)
 
-$(OBJ)/main.o: src/main.cpp
+$(OBJ)/main.o: $(SRC)/main.cpp
 	$(CC) -o $(OBJ)/main.o -c $(SRC)/main.cpp $(CCFLAGS) $(IFLAGS)
+
+pre-build:
+	mkdir -p $(OBJ)
 
 clean:
 	rm -rf $(BLD)
