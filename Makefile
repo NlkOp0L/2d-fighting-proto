@@ -19,7 +19,10 @@ IFLAGS=-I lib/raylib/
 
 
 
-all: $(EXE)
+all: pre-build $(EXE)
+
+pre-build:
+	mkdir -p $(OBJ)
 
 $(EXE): $(OBJ)/main.o
 	$(CC) -o $(EXE) $(OBJ)/main.o $(LFLAGS)
@@ -29,4 +32,3 @@ $(OBJ)/main.o: src/main.cpp
 
 clean:
 	rm -rf $(BLD)
-	mkdir -p $(OBJ)
