@@ -1,0 +1,18 @@
+name: mingw-w64 CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: egor-tensin/setup-mingw@v2
+    - name: make
+      run: make
