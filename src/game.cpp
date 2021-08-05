@@ -12,20 +12,19 @@ void Game::init() {
 void Game::run() {
     while (m_isRunning && !WindowShouldClose())
     {
-        update();
+        update(GetFrameTime()); // Not sure about that dt
         render();
     }
 
     CloseWindow();
 }
 
-void Game::update() {
-
+void Game::update(float dt) {
+     m_curScene->update(dt);
 }
 
 void Game::render() {
     BeginDrawing();
-        ClearBackground(RAYWHITE);
-        DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
+     m_curScene->render();
     EndDrawing();
 }

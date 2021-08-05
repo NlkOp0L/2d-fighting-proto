@@ -21,14 +21,17 @@ IFLAGS=-I lib
 
 all: pre-build $(EXE) $(TST_EXE)
 
-$(EXE): $(OBJ)/main.o $(OBJ)/game.o
-	$(CC) -o $(EXE) $(OBJ)/main.o $(OBJ)/game.o $(LFLAGS)
+$(EXE): $(OBJ)/main.o $(OBJ)/game.o $(OBJ)/scene.o
+	$(CC) -o $(EXE) $(OBJ)/main.o $(OBJ)/game.o $(OBJ)/scene.o $(LFLAGS)
 
 $(OBJ)/main.o: $(SRC)/main.cpp
 	$(CC) -o $(OBJ)/main.o -c $(SRC)/main.cpp $(CCFLAGS) $(IFLAGS)
 
 $(OBJ)/game.o: $(SRC)/game.cpp
 	$(CC) -o $(OBJ)/game.o -c $(SRC)/game.cpp $(CCFLAGS) $(IFLAGS)
+
+$(OBJ)/scene.o: $(SRC)/scene.cpp
+	$(CC) -o $(OBJ)/scene.o -c $(SRC)/scene.cpp $(CCFLAGS) $(IFLAGS)
 
 pre-build:
 	mkdir -p $(OBJ)
